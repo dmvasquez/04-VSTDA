@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="" ng-app='app'>
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<title>Title Page</title>
+
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+	</head>
+
+	<body>
+		<!-- Main Container -->	
+		<div ng-controller="HomeController as home" class="">
+			<div class="col-xs-12" style="height:10px;"></div>
+			<!-- Input Box Form -->
+			<div class="col-sm-3 offset-xs-1">
+				<div class="panel panel-info">
+					<!-- Panel Header-->
+					<div class="panel-heading">Add Todo Item</div>
+					<!-- Panel Body -->
+					<div class="panel-body">
+						<div class="form-group">
+							<label>Text</label>
+							<input class="form-control" ng-model="home.newPost" type="text" name="" placeholder="Text goes here.">
+							<label>Priority</label>	
+							<select ng-init="selected=0" class="form-control" ng-model="home.newClass" >
+								<option value="2">High Priority</option>
+								<option value="1">Medium Priority</option>
+								<option value="" selected>Low Priority</option>
+							</select>
+						</div>
+					</div>
+					<!-- Panel Footer -->
+					<div class="panel-footer">
+						<button class="btn btn-primary" ng-click="home.addPost()">Add Todo</button>
+					</div>
+				</div>
+			</div>
+		
+			<!-- Side Container with Outputs -->
+			<div class="col-md-7">
+				<!-- Nav bar for Order -->
+						<div class="btn-group">
+								<button ng-click="home.hPost()" class="btn btn-primary">Order by highest priority</button>
+								<button ng-click="home.lPost()" class="btn btn-primary">Order by lowest priority</button>
+								<button ng-click="home.sortPost()" class="btn btn-primary">Order alphabetically</button>
+						</div>
+				<!-- Outputs of Items -->
+				<ul class="list-group">
+					<p></p>
+					<li class="list-group-item" ng-repeat="post in home.posts | orderBy: home.aSort track by $index" ng-class="post.color"> {{post.text}} </li>
+				</ul>
+			</div>
+
+		</div>
+
+
+		<!-- Angular.js -->
+		<script src="bower_components/angular/angular.js"></script>
+		<!-- jQuery -->
+		<script src="//code.jquery.com/jquery.js"></script>
+		<!-- Bootstrap JavaScript -->
+		<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+		<!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
+ 		<script src="app/app.module.js"></script>
+ 		<script src="app/Home/home.controller.js"></script>
+	</body>
+</html>
+
